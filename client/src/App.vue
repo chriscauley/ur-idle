@@ -1,7 +1,15 @@
 <template>
-  <router-view />
+  <div class="app-wrapper">
+    <site-nav />
+    <router-view />
+    <unrest-ui />
+  </div>
 </template>
 
 <script>
-export default {}
+import SiteNav from '@/components/SiteNav'
+
+export default {
+  components: { SiteNav },
+}
 </script>
