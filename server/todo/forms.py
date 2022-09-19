@@ -16,11 +16,12 @@ class OwnerForm(forms.ModelForm):
 class TaskForm(OwnerForm):
     class Meta:
         model = Task
-        fields = ('name', 'due', 'completed', 'data')
+        fields = ('name', 'completed', 'data', 'project', 'activity')
 
     def save(self, *args, **kwargs):
+        self.instance.data = self.instance.data or {}
         instance = super().save(*args, **kwargs)
-        if self.request.data.get('add_activity'):
+        if self.request_data.get('add_activity'):
             activity, new = Activity.objects.get_or_create(name=instance.name)
             instance.activity = activity
             instance.save()
@@ -28,5 +29,6 @@ class TaskForm(OwnerForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['due'].required = False
         self.fields['completed'].required = False
+        self.fields['project'].required = False
+        self.fields['activity'].required = False
