@@ -1,2 +1,4 @@
 Django==4.1.1
 django-unrest==0.1.9
+django-unrest==0.1.9
+unrest-schema==0.1.1

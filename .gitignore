@@ -1,5 +1,9 @@
+# server
 .venv
 __pycache__
 db.sqlite3
+.secret_key
 
+# client
 node_modules
+dist
