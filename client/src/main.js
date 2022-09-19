@@ -7,6 +7,7 @@ import '@unrest/tailwind/dist.css'
 
 import App from './App.vue'
 import router from './router'
+import store from './store'
 
 createApp(App)
   .use(unrest.plugin)
@@ -14,4 +15,5 @@ createApp(App)
   .use(form)
   .use(router)
   .use(auth.plugin)
+  .use(store)
   .mount('#app')

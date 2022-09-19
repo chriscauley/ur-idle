@@ -19,6 +19,7 @@ class BaseModel(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
 
 class Project(BaseModel):
@@ -40,5 +41,5 @@ class Task(BaseModel):
         ordering = ('-created',)
     activity = models.ForeignKey(Activity, on_delete=models.CASCADE, null=True, blank=True)
     project = models.ForeignKey(Project, on_delete=models.CASCADE, null=True, blank=True)
-    due = models.DateTimeField()
+    due = models.DateTimeField(null=True, blank=True)
     completed = models.DateTimeField(null=True, blank=True)

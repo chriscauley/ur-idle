@@ -5,6 +5,7 @@ from unrest.views import index
 
 # forms loaded via unrest schema
 import unrest.user.forms
+import todo.forms
 
 urlpatterns = [
     path("admin/", admin.site.urls),
