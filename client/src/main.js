@@ -8,6 +8,7 @@ import '@unrest/tailwind/dist.css'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import './css/index.css'
 
 createApp(App)
   .use(unrest.plugin)

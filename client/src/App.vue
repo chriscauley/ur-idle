@@ -1,7 +1,7 @@
 <template>
   <div class="app-wrapper">
     <site-nav />
-    <router-view />
+    <router-view class="app-content" />
     <unrest-ui />
   </div>
 </template>

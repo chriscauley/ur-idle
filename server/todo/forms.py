@@ -16,13 +16,11 @@ class OwnerForm(forms.ModelForm):
 class TaskForm(OwnerForm):
     class Meta:
         model = Task
-        fields = ('name', 'due', 'completed', 'data', 'add_activity')
-
-    add_activity = forms.BooleanField(required=False)
+        fields = ('name', 'due', 'completed', 'data')
 
     def save(self, *args, **kwargs):
         instance = super().save(*args, **kwargs)
-        if self.cleaned_data['add_activity']:
+        if self.request.data.get('add_activity'):
             activity, new = Activity.objects.get_or_create(name=instance.name)
             instance.activity = activity
             instance.save()

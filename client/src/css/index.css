@@ -1,0 +1,24 @@
+@import './tailwind.css';
+
+body { background: var(--bg-alt); }
+
+#app {
+  background: var(--bg);
+  min-height: 100%;
+  max-width: 400px;
+}
+
+.app-content {
+  @apply flex flex-col gap-4 px-4;
+}
+
+.task-list {
+  .list-group-item {
+    /* should this be global? */
+    @apply gap-2;
+  }
+  .fa.-action {
+    @apply cursor-pointer;
+    font-size: 1.5rem;
+  }
+}
