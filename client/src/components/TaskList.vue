@@ -59,9 +59,8 @@ export default {
         delete task.data.started
         task.completed = new Date()
       }
-      console.log(task.data)
       this.$store.task.save(task)
-    }
+    },
   },
 }
 </script>

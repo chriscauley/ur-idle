@@ -1,8 +1,9 @@
+import project from './project'
 import task from './task'
 
 const store = {}
 
-const modules = { task }
+const modules = { project, task }
 
 export default {
   install(app) {

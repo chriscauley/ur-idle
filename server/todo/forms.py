@@ -13,7 +13,24 @@ class OwnerForm(forms.ModelForm):
 
 
 @unrest_schema.register
+class ProjectForm(OwnerForm):
+    readonly_fields = ['slug']
+    class Meta:
+        model = Project
+        fields = ('name', 'data')
+
+
+@unrest_schema.register
+class ActivityForm(OwnerForm):
+    readonly_fields = ['slug']
+    class Meta:
+        model = Activity
+        fields = ('name', 'data', 'project')
+
+
+@unrest_schema.register
 class TaskForm(OwnerForm):
+    readonly_fields = ['slug']
     class Meta:
         model = Task
         fields = ('name', 'completed', 'data', 'project', 'activity')
