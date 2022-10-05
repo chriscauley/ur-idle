@@ -28,9 +28,9 @@ export default {
         return null
       }
       const [_, model_name, id] = modal_form.split('/')
-      let title = `${id ? "Edit" : "Add"} ${startCase(model_name)}`
+      let title = `${id ? 'Edit' : 'Add'} ${startCase(model_name)}`
       return { title, model_name, id, name: modal_form }
-    }
+    },
   },
   methods: {
     prepSchema(schema) {
@@ -49,7 +49,7 @@ export default {
       const query = { ...this.$route.query }
       delete query.modal_form
       this.$store.ui.openForm(null)
-    }
-  }
+    },
+  },
 }
 </script>
