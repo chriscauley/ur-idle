@@ -10,15 +10,12 @@
         {{ project.name }}
       </router-link>
       <div class="list-group-item">
-        <button type="button" class="btn -primary" @click="adding = true">
+        <button class="btn -primary" @click="$store.ui.openForm('schema/project')">
           <i class="fa fa-plus" />
           Add New Project
         </button>
       </div>
     </div>
-    <unrest-modal v-if="adding" :hide_actions="true" title="Add Project">
-      <unrest-schema-form form_name="schema/project" :prepSchema="prepSchema" @success="success" />
-    </unrest-modal>
   </div>
 </template>
 
@@ -27,23 +24,9 @@ export default {
   __route: {
     path: '/',
   },
-  data() {
-    return { adding: null }
-  },
   computed: {
     projects() {
       return this.$store.project.getPage()?.items
-    },
-  },
-  methods: {
-    prepSchema(schema) {
-      delete schema.properties.data
-      return schema
-    },
-    success() {
-      this.$store.project.api.markStale()
-      this.$store.project.getPage()?.items
-      this.adding = false
     },
   },
 }

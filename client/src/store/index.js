@@ -1,9 +1,11 @@
+import activity from './activity'
 import project from './project'
 import task from './task'
+import ui from './ui'
 
 const store = {}
 
-const modules = { project, task }
+const modules = { activity, project, task, ui }
 
 export default {
   install(app) {

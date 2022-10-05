@@ -9,7 +9,7 @@ import todo.forms
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    re_path("^(app|auth)/", index),
+    re_path("^(app|auth|project|task|activity)/", index),
     path("", index),
-    path('', include('unrest.urls')),
+    path("", include('unrest.urls')),
 ]
