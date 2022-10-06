@@ -34,11 +34,30 @@ export default {
   },
   methods: {
     prepSchema(schema) {
-      delete schema.properties.data
       const { project_id } = this.$route.params
       if (schema.properties.project && project_id) {
         schema.properties.project.default = parseInt(project_id)
         schema.properties.project.format = 'hidden'
+      }
+      if (this.form.name.includes('activity')) {
+        Object.assign(schema.properties.data.properties, {
+          measurements: {
+            type: 'array',
+            items: {
+              type: 'string',
+              enum: ['reps', 'sets', 'lbs', 'count'],
+            },
+          },
+          texts: {
+            type: 'array',
+            items: {
+              type: 'string',
+              enum: ['note', 'project', 'game', 'book'],
+            },
+          },
+        })
+      } else {
+        schema.properties.data.format = 'hidden'
       }
       return schema
     },

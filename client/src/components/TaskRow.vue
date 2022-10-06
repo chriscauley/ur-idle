@@ -5,7 +5,11 @@
       <div>{{ display_name }}</div>
       <div v-if="display_time">{{ display_time }}</div>
     </div>
-    <div></div>
+    <unrest-dropdown :items="dropdown_items" placement="bottom-end">
+      <div class="btn -light">
+        <i class="fa fa-ellipsis-v" />
+      </div>
+    </unrest-dropdown>
   </div>
 </template>
 
@@ -31,6 +35,17 @@ export default {
     return { tick: 0 }
   },
   computed: {
+    dropdown_items() {
+      const { activity } = this
+      const { openForm } = this.$store.ui
+      const actions = [
+        activity && {
+          text: 'Edit Activity',
+          click: () => openForm(`schema/activity/${activity.id}`),
+        },
+      ]
+      return actions.filter(Boolean)
+    },
     display_name() {
       return this.task?.name || this.activity?.name
     },
