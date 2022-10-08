@@ -19,6 +19,7 @@ class BaseModel(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
+        self.data = self.data or {}
         super().save(*args, **kwargs)
 
 

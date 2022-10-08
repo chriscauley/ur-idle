@@ -58,6 +58,7 @@ export default {
         })
       } else {
         schema.properties.data.format = 'hidden'
+        schema.properties.data.default = {}
       }
       return schema
     },

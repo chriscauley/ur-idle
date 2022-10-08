@@ -12,13 +12,36 @@ body { background: var(--bg-alt); }
   @apply flex flex-col gap-4 px-4;
 }
 
-.task-list {
-  .list-group-item {
-    /* should this be global? */
-    @apply gap-2;
+.task-row {
+  @apply items-center;
+  &.-started {
+    @apply items-start;
   }
-  .fa.-action {
-    @apply cursor-pointer;
-    font-size: 1.5rem;
+  .form-group {
+    @apply flex gap-4 items-center;
+    label {
+      flex-basis: 60px;
+    }
+    [type=number] {
+      width: 64px;
+    }
+    &:last-child {
+      @apply mb-0;
+    }
+  }
+  .ur-form {
+    @apply border-t pt-4 mt-2;
+  }
+  &__display {
+    @apply flex flex-grow flex-col justify-between;
+  }
+  .fa-2x, .unrest-dropdown .fa {
+    line-height: 1;
+  }
+  .ur-dropdown .btn.-light {
+    @apply py-0;
+    .fa {
+      font-size: 1.5rem;
+    }
   }
 }
