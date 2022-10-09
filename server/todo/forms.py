@@ -31,6 +31,7 @@ class ActivityForm(OwnerForm):
 @unrest_schema.register
 class TaskForm(OwnerForm):
     readonly_fields = ['slug']
+    filter_fields = ['activity_id']
     class Meta:
         model = Task
         fields = ('name', 'completed', 'data', 'project', 'activity')

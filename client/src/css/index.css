@@ -13,10 +13,7 @@ body { background: var(--bg-alt); }
 }
 
 .task-row {
-  @apply items-center;
-  &.-started {
-    @apply items-start;
-  }
+  @apply items-center flex-wrap;
   .form-group {
     @apply flex gap-4 items-center;
     label {
@@ -31,6 +28,7 @@ body { background: var(--bg-alt); }
   }
   .ur-form {
     @apply border-t pt-4 mt-2;
+    width: 100%;
   }
   &__display {
     @apply flex flex-grow flex-col justify-between;
