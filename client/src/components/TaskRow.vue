@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { debounce } from 'lodash'
+import { debounce, sortBy } from 'lodash'
 
 import { format, formatDistanceToNowStrict, formatDistanceStrict } from 'date-fns'
 
@@ -65,18 +65,25 @@ export default {
       return task && task.data.started && !task.completed
     },
     display_time() {
-      const { task, timer_active } = this
+      const { task, timer_active, activity } = this
       if (task && task.data.started && task.completed) {
         const started = new Date(task.data.started)
         const duration = formatDistanceStrict(started, new Date(task.completed))
         return `${duration} on ${format(started, 'yyyy-MM-dd')}`
       }
-      if (!timer_active) {
-        return null
+      if (timer_active) {
+        const text = formatDistanceToNowStrict(new Date(task.data.started))
+        this.watchTime(text)
+        return text
       }
-      const text = formatDistanceToNowStrict(new Date(task.data.started))
-      this.watchTime(text)
-      return text
+      const completed_tasks = activity?.tasks.filter((t) => t.completed)
+      if (completed_tasks?.length) {
+        const last_task = sortBy(completed_tasks, 'completed').pop()
+        const text = formatDistanceToNowStrict(new Date(last_task.completed))
+        this.watchTime(text)
+        return text + ' ago'
+      }
+      return null
     },
     form() {
       if (!this.timer_active && !this.edit_task) {
